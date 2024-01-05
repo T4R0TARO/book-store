@@ -1,5 +1,5 @@
 // const express = require("express");
-import express from "express";
+import express from "express"; // REFACTORED because of ` 'type':'module' `
 const app = express();
 
 // connect to DB
