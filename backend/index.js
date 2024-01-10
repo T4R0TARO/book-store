@@ -6,6 +6,11 @@ import connectDB from "./db/connect.js";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
 
+// TODO: Refactor `/routes` so that the route handlers are in a seperate module ✅
+// TODO: Add Custom Error Handler Middleware
+// TODO: npm i "http-status-codes" ➡ Refactor Status Codes
+// TODO: npm i "express-async-errors" ➡ Refactor route handlers from `try/catch` to `async/await`
+
 const app = express();
 // parse JSON files
 app.use(express.json());
