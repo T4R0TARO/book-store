@@ -1,32 +1,17 @@
 import { Book } from "../models/bookModel.js";
+import { StatusCodes } from "http-status-codes";
+import BadRequestError from "../errors/bad-request.js";
 
 // Routes
 // Create Book
 const createBook = async (request, response) => {
-  try {
-    if (
-      !request.body.title ||
-      !request.body.author ||
-      !request.body.publishYear
-    ) {
-      return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear",
-      });
-    }
-
-    const newBook = {
-      title: request.body.title,
-      author: request.body.author,
-      publishYear: request.body.publishYear,
-    };
-
-    const book = await Book.create(newBook);
-
-    return response.status(201).send(book);
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
-  }
+  const newBook = {
+    title: request.body.title,
+    author: request.body.author,
+    publishYear: request.body.publishYear,
+  };
+  const book = await Book.create(newBook);
+  return response.status(StatusCodes.CREATED).send(book);
 };
 // Find Book By Id
 const getBook = async (request, response) => {
