@@ -1,14 +1,17 @@
 // require("dotenv").config();
 import { config } from "dotenv";
 config({ path: "../.env" });
+import "express-async-errors";
 import express from "express"; // REFACTORED because of ` 'type':'module' `
 import connectDB from "./db/connect.js";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
+import notFoundMiddleware from "./middleware/not-found.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 // TODO: Refactor `/routes` so that the route handlers are in a seperate module ✅
 // TODO: Add Custom Error Handler Middleware
-// TODO: npm i "http-status-codes" ➡ Refactor Status Codes
+// TODO: npm i "http-status-codes" ➡ Refactor Status Codes ✅
 // TODO: npm i "express-async-errors" ➡ Refactor route handlers from `try/catch` to `async/await`
 
 const app = express();
@@ -33,6 +36,9 @@ app.get("/", (request, response) => {
 });
 
 app.use("/books", booksRoute);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
 
