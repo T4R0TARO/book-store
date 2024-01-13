@@ -1,6 +1,7 @@
 import { Book } from "../models/bookModel.js";
 import { StatusCodes } from "http-status-codes";
 import BadRequestError from "../errors/bad-request.js";
+import NotFoundError from "../errors/not-found.js";
 
 // Routes
 // Create Book
@@ -15,14 +16,12 @@ const createBook = async (request, response) => {
 };
 // Find Book By Id
 const getBook = async (request, response) => {
-  try {
-    const { id } = request.params;
-    const book = await Book.findById(id);
-    return response.status(200).json(book);
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
+  const { id } = request.params;
+  const book = await Book.findById(id);
+  if (!book) {
+    throw new NotFoundError(`No book found with id: ${id}`);
   }
+  return response.status(StatusCodes.OK).json(book);
 };
 // Get All Books
 const getAllBooks = async (request, response) => {

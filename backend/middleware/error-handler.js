@@ -24,7 +24,11 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
 
   // TODO: Duplicate Item Error
-  // TODO: No Item with ID found Error
+  // TODO: No Item with ID found Error (Invalid ID format)
+  if (err.name === "CastError") {
+    customError.msg = `No book with id: ${err.value}`;
+    customError.statusCode = 404;
+  }
 
   // ? For TESTING
   // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
