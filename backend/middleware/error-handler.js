@@ -23,6 +23,9 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 400;
   }
 
+  // TODO: Duplicate Item Error
+  // TODO: No Item with ID found Error
+
   // ? For TESTING
   // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
   return res.status(customError.statusCode).json({ msg: customError.msg });
