@@ -1,6 +1,6 @@
 import { Book } from "../models/bookModel.js";
 import { StatusCodes } from "http-status-codes";
-import BadRequestError from "../errors/bad-request.js";
+// import BadRequestError from "../errors/bad-request.js";
 import NotFoundError from "../errors/not-found.js";
 
 // Routes
@@ -41,19 +41,26 @@ const updateBook = async (request, response) => {
 };
 // Delete Book by Id
 const deleteBook = async (request, response) => {
-  try {
-    const { id } = request.params;
-    const result = await Book.findByIdAndDelete(id);
-    if (!result) {
-      return response.status(404).json({ message: "Book not found..." });
-    }
-    return response
-      .status(200)
-      .send({ message: "Book deleted successfully..." });
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
+  // try {
+  //   const { id } = request.params;
+  //   const result = await Book.findByIdAndDelete(id);
+  //   if (!result) {
+  //     return response.status(404).json({ message: "Book not found..." });
+  //   }
+  //   return response
+  //     .status(200)
+  //     .send({ message: "Book deleted successfully..." });
+  // } catch (error) {
+  //   console.log(error.message);
+  //   response.status(500).send({ message: error.message });
+  // }
+  const { id } = request.params;
+  const result = await Book.findByIdAndDelete(id);
+  if (!result) {
+    // return response.status(404).json({ message: "Book not found..." });
+    throw new NotFoundError(`No book with id ${id}...`);
   }
+  return response.status(200).send({ message: "Book deleted successfully..." });
 };
 
 export { createBook, getBook, getAllBooks, updateBook, deleteBook };
