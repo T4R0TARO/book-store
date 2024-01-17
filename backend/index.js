@@ -9,11 +9,6 @@ import cors from "cors";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-// TODO: Refactor `/routes` so that the route handlers are in a seperate module ✅
-// TODO: Add Custom Error Handler Middleware
-// TODO: npm i "http-status-codes" ➡ Refactor Status Codes ✅
-// TODO: npm i "express-async-errors" ➡ Refactor route handlers from `try/catch` to `async/await`
-
 const app = express();
 // parse JSON files
 app.use(express.json());
@@ -31,11 +26,10 @@ app.use(
 );
 
 app.get("/", (request, response) => {
-  // console.log(request);
   return response.status(200).send("Wah Wah Wah");
 });
 
-app.use("/books", booksRoute);
+app.use("/api/v1/books", booksRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
