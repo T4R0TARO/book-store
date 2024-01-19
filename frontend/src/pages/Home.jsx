@@ -1,8 +1,7 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+// import React from "react";
 
 const Home = () => {
-  return <div>HOME</div>;
+  return <div className="bg-indigo-500 text-sky-400 text-xl">HOME</div>;
 };
 
 export default Home;
