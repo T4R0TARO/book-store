@@ -16,7 +16,8 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/api/v1/books")
+      // .get("http://localhost:3000/api/v1/books")
+      .get("https://book-store-production-f9c6.up.railway.app/api/v1/books")
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
