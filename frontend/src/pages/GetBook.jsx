@@ -12,7 +12,10 @@ const GetBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3000/api/v1/books/${id}`)
+      // .get(`http://localhost:3000/api/v1/books/${id}`)
+      .get(
+        `https://book-store-production-f9c6.up.railway.app/api/v1/books/${id}`
+      )
       .then((response) => {
         setBook(response.data);
         setLoading(false);

@@ -17,7 +17,10 @@ const UpdateBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3000/api/v1/books/${id}`)
+      // .get(`http://localhost:3000/api/v1/books/${id}`)
+      .get(
+        `https://book-store-production-f9c6.up.railway.app/api/v1/books/${id}`
+      )
       .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear);
@@ -39,7 +42,11 @@ const UpdateBook = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:3000/api/v1/books/${id}`, data)
+      // .put(`http://localhost:3000/api/v1/books/${id}`, data)
+      .put(
+        `https://book-store-production-f9c6.up.railway.app/api/v1/books/${id}`,
+        data
+      )
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book Edited Successfully"), { variant: "success" };
