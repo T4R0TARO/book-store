@@ -35,7 +35,8 @@ app.use("/api/v1/books", booksRoute);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
+const port = "https://book-store-production-f9c6.up.railway.app/" || 3000;
 
 const start = async () => {
   try {
