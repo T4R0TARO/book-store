@@ -1,6 +1,7 @@
 // require("dotenv").config();
 import { config } from "dotenv";
-config({ path: "../.env" });
+// config({ path: "../.env" });
+config("./.env");
 import "express-async-errors";
 import express from "express"; // REFACTORED because of ` 'type':'module' `
 import connectDB from "./db/connect.js";
