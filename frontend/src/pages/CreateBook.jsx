@@ -21,7 +21,11 @@ const CreateBook = () => {
     };
     setLoading(true);
     axios
-      .post("http://localhost:3000/api/v1/books", data)
+      // .post("http://localhost:3000/api/v1/books", data)
+      .post(
+        "https://book-store-production-f9c6.up.railway.app/api/v1/books",
+        data
+      )
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book Created Successfully", { variant: "success" });
